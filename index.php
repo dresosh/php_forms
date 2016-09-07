@@ -21,6 +21,9 @@
       .green {
         color: green;
       }
+      .center {
+        text-align: center;
+      }
     </style>
   </head>
   <body>

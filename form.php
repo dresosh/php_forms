@@ -8,7 +8,7 @@
 
 
   if (isset($submit)) {
-    if (strlen($message) > 1 ) {
+    if (strlen($message) > 1 && strlen($to) > 1 && strlen($subject) > 1) {
       mail($to, $subject, $message, $from);
     }
   }
@@ -20,7 +20,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-6">
-        <h1>Send a message to your Pal</h1>
+        <h1>Send a message</h1>
         <form class="" action="" method="post">
           <div class="form-group">
             <input type="email" class="form-control" name="sender" placeholder="Email Sender">
@@ -36,6 +36,7 @@
           </div>
           <div class="form-group">
             <button type="submit" name="submit" class="btn btn-default">Send</button>
+            <button type="clear" name="clear" class="btn btn-danger">Reset</button>
           </div>
         </form>
       </div>
@@ -47,18 +48,16 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-6">
-        <h4>
-
           <?php
           if (isset($submit)) {
-            if (strlen($message) > 1 ) {
-              echo "<div class='alert alert-success'>Your message has been sent!!</div>";
+            if (strlen($message) > 1 && strlen($to) > 1 && strlen($subject) > 1) {
+              echo "<div class='center alert alert-success'>Your message has been sent!!</div>";
+              echo "Your message was sent to " .$to;
             } else {
-              echo "<div class='alert alert-danger'>You need to fill in the message field!!!</div>";
+              echo "<div class='center alert alert-danger'>You need to fill out all fields!!!</div>";
             }
           }
           ?>
-        </h4>
       </div>
     </div>
   </div>
