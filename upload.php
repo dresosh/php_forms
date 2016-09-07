@@ -1,13 +1,13 @@
 <?php
-  if (isset($submit)) {
-    if ($name == '' || $email == '') {
-      echo "<div class='red'>Please fill out all fields!</div>";
-    } elseif (strlen($name) < 3 ) {
-      echo "<div class='red'>Your name needs to be at least 3 characters long!</div>";
-    } else {
-      echo "<div class='green'>Thank You for your submission!</div>";
-    }
-  } else {
-    echo "Please fill out the fields below!";
-  }
+// Message
+$msg = 'This is a test email';
+
+// Wordwrap
+$msg = wordwrap($msg, 70);
+
+// Sender
+$from = "From: " .'wutang@wutang.com';
+
+// Sending Email
+mail("andre@looking.la", "Test Subject", $msg, $from);
 ?>
