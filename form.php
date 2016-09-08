@@ -1,42 +1,66 @@
 <?php
 
-  $to = $_POST['receiver'];
-  $from = "From: " .$_POST['sender'];
-  $subject = $_POST['subject'];
-  $message = $_POST['message'];
-  $submit = $_POST['submit'];
+$file = $_FILES['file'];
+$file_name = $file['name'];
+$file_size = $file['size'];
+$file_type = $file['type'];
+$file_error = $file['error'];
+$file_tmp = $file['tmp_name'];
+$submit = $_POST['submit'];
 
+if (isset($file)) {
 
-  if (isset($submit)) {
-    if (strlen($message) > 1 && strlen($to) > 1 && strlen($subject) > 1) {
-      mail($to, $subject, $message, $from);
+  // Work out file extension
+  $file_ext = explode('.', $file_name);
+  $file_ext = strtolower(end($file_ext));
+
+  $allowed =  array( 'png', 'jpg');
+
+  if (in_array($file_ext, $allowed)) {
+    if ($file_error === 0) {
+      if ($file_size <= 20000000) {
+        $file_name_new = uniqid('', true) . '.' . $file_ext;
+        $file_destination = 'uploads/' . $file_name_new;
+
+        if (move_uploaded_file($file_tmp, $file_destination)) {
+          echo $file_destination;
+        } else {
+          echo "file was not uploaded";
+        }
+      }
     }
   }
+
+}
+
 
 ?>
 
 
-<section class="mailer-container">
+<section class="data">
   <div class="container">
     <div class="row">
       <div class="col-sm-6">
-        <h1>Send a message</h1>
-        <form class="" action="" method="post">
+        <h3>
+          <?php
+          ?>
+        </h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="download">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <h2>File Upload</h2>
+        <form class="form-upload" method="post" enctype="multipart/form-data">
           <div class="form-group">
-            <input type="email" class="form-control" name="sender" placeholder="Email Sender">
+            <input type="file" name="file" class="form-control">
           </div>
           <div class="form-group">
-            <input type="email" class="form-control" name="receiver" placeholder="Email Receiver">
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control" name="subject" placeholder="Subject">
-          </div>
-          <div class="form-group">
-            <textarea name="message" rows="8" class="form-control"></textarea>
-          </div>
-          <div class="form-group">
-            <button type="submit" name="submit" class="btn btn-default">Send</button>
-            <button type="clear" name="clear" class="btn btn-danger">Reset</button>
+            <button type="submit" name="submit" class="btn btn-default">Upload</button>
           </div>
         </form>
       </div>
@@ -44,20 +68,14 @@
   </div>
 </section>
 
-<section class="confirmation">
+<section class="info-container">
   <div class="container">
     <div class="row">
       <div class="col-sm-6">
-          <?php
-          if (isset($submit)) {
-            if (strlen($message) > 1 && strlen($to) > 1 && strlen($subject) > 1) {
-              echo "<div class='center alert alert-success'>Your message has been sent!!</div>";
-              echo "Your message was sent to " .$to;
-            } else {
-              echo "<div class='center alert alert-danger'>You need to fill out all fields!!!</div>";
-            }
-          }
-          ?>
+        <h3>Summary</h3>
+        <h5>File: <?php echo $file_name; ?> </h5>
+        <h5>Size: <?php echo $file_size/1000; ?> KB</h5>
+        <h5>Kind: <?php echo $file_type; ?></h5>
       </div>
     </div>
   </div>
