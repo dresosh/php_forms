@@ -1,66 +1,63 @@
 <?php
+  // Variables
+  $name    = $_POST['name'];
+  $email   = $_POST['email'];
+  $company = $_POST['company'];
+  $options = $_POST['options'];
+  $submit  = $_POST['submit'];
+  $to      = 'andre@looking.la';
+  $from    = 'From: admin@looking.la';
+  $subject = 'Avion form signup';
+  $message = 'From: ' .$name."\n". 'Email: ' .$email."\n". 'Company: ' .$company."\n". 'Industry: ' .$options."\n";
 
-$file = $_FILES['file'];
-$file_name = $file['name'];
-$file_size = $file['size'];
-$file_type = $file['type'];
-$file_error = $file['error'];
-$file_tmp = $file['tmp_name'];
-$submit = $_POST['submit'];
+  // Recaptcha Data
+  $secret   = '6LdBtikTAAAAAKMonFkh2GkaFU26k8jTPw6fwFJt';
+  $response = $_POST['g-recaptcha-response'];
+  $remoteip = $_SERVER['REMOTE_ADDR'];
+  $url      = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret&response=$response&remoteip=$remoteip");
+  $result   = json_decode($url, true);
+  $result   = $result['success'];
 
-if (isset($file)) {
 
-  // Work out file extension
-  $file_ext = explode('.', $file_name);
-  $file_ext = strtolower(end($file_ext));
-
-  $allowed =  array( 'png', 'jpg');
-
-  if (in_array($file_ext, $allowed)) {
-    if ($file_error === 0) {
-      if ($file_size <= 20000000) {
-        $file_name_new = uniqid('', true) . '.' . $file_ext;
-        $file_destination = 'uploads/' . $file_name_new;
-
-        if (move_uploaded_file($file_tmp, $file_destination)) {
-          echo $file_destination;
-        } else {
-          echo "file was not uploaded";
-        }
+  if (isset($submit)) {
+    if ($result == 1) {
+      if (!empty($name) && !empty($email)) {
+        mail($to, $subject, $message, $from);
       }
     }
   }
 
-}
-
 
 ?>
 
-
-<section class="data">
+<section class="form-container">
   <div class="container">
     <div class="row">
       <div class="col-sm-6">
-        <h3>
-          <?php
-          ?>
-        </h3>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="download">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-6">
-        <h2>File Upload</h2>
-        <form class="form-upload" method="post" enctype="multipart/form-data">
+        <h1>Avion Signup</h1>
+        <form method="post">
           <div class="form-group">
-            <input type="file" name="file" class="form-control">
+            <input type="text" class="form-control" name="name" placeholder="Name">
           </div>
           <div class="form-group">
-            <button type="submit" name="submit" class="btn btn-default">Upload</button>
+            <input type="email" class="form-control" name="email" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="company" placeholder="Company">
+          </div>
+          <div class="form-group">
+            <select class="form-control" name="options">
+              <option value="real">Real Estate</option>
+              <option value="press">Press</option>
+              <option value="Design">Design</option>
+            </select>
+          </div>
+          <div class="g-recaptcha" data-sitekey="6LdBtikTAAAAACwgEiLrCQXN7I-uNCepReqT0MQ2"></div>
+          <br>
+          <div class="form-group">
+            <button type="submit" name="submit" class="btn btn-default">Submit</button>
+            <button type="clear" name="clear" class="btn btn-primary">Clear</button>
+            <button type="reset" name="reset" class="btn btn-danger">Reset</button>
           </div>
         </form>
       </div>
@@ -68,14 +65,27 @@ if (isset($file)) {
   </div>
 </section>
 
-<section class="info-container">
+<section class="document-container">
   <div class="container">
     <div class="row">
       <div class="col-sm-6">
-        <h3>Summary</h3>
-        <h5>File: <?php echo $file_name; ?> </h5>
-        <h5>Size: <?php echo $file_size/1000; ?> KB</h5>
-        <h5>Kind: <?php echo $file_type; ?></h5>
+        <?php
+          if (isset($submit)) {
+            if ($result == 1) {
+              if (!empty($name) && !empty($email)) {
+                if (strlen($name) > 2 ) {
+                  echo '<div class="center alert alert-success">Thanks you for your submission! <br>  Click <a href="looking.la" download>Floorplans</a> to download!</div>';
+                } else {
+                  echo '<div class="center alert alert-danger">Your name need to be at least 3 characters long!</div>';
+                }
+              } else {
+                echo '<div class="center alert alert-danger">You need to fill out all fields!</div>';
+              }
+            } else {
+              echo '<div class="center alert alert-danger">You need to prove you are not a bot!</div>';
+            }
+          }
+        ?>
       </div>
     </div>
   </div>
