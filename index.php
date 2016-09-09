@@ -12,8 +12,18 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <style media="screen">
-      h4 {
+      h4, h5 {
         display: inline-block;
+        height: 40px;
+      }
+      h4 {
+        width: 100px;
+      }
+      h6 {
+        font-size: 14px;
+      }
+      h5 {
+        padding-top: 3px;
       }
       .red {
         color: red;
