@@ -124,5 +124,7 @@ if (isset($submit)) {
 empty() This function is useful to determine if a fields is empty.
 
 ```
-
-[PHP File Uploading]('https://www.youtube.com/watch?v=PRCobMXhnyw')
+#### Helpful video tutorials
+```
+PHP File upload https://www.youtube.com/watch?v=PRCobMXhnyw 
+```
