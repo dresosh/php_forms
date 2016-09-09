@@ -117,3 +117,12 @@ if (isset($submit)) {
 ```
 
 ## PHP File Upload
+
+#### Useful functions to use dealing with forms
+
+```
+empty() This function is useful to determine if a fields is empty.
+
+```
+
+[PHP File Uploading]('https://www.youtube.com/watch?v=PRCobMXhnyw')
