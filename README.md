@@ -120,11 +120,16 @@ if (isset($submit)) {
 
 #### Useful functions to use dealing with forms
 
-```
-empty() This function is useful to determine if a fields is empty.
 
-```
+`empty()` This function is useful to determine if a fields is empty.
+
+`explode()` Splits a string by defined symbol and returns array
+
+`in_array()` Searches for items in the array
+
+`uniqid()` Gets a prefixed unique identifier based on the current time in microseconds
+
 #### Helpful video tutorials
 ```
-PHP File upload https://www.youtube.com/watch?v=PRCobMXhnyw 
+PHP File upload https://www.youtube.com/watch?v=PRCobMXhnyw
 ```
