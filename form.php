@@ -54,7 +54,7 @@ $allowed =  array( 'pdf', 'jpg', 'html');
 
                   if (move_uploaded_file($file_tmp, $file_destination)) {
                     // echo $file_destination;
-                    echo '<div style="text-transform: uppercase;" class="center alert alert-success">file was successfully uploaded <br> click to see <a href="http://fileupload.looking.la/'.$file_destination.'">File Destination</a></div>';
+                    echo '<div style="text-transform: uppercase;" class="center alert alert-success">file was successfully uploaded <br> click to see <a href="http://tester.looking.la/'.$file_destination.'">File Destination</a></div>';
                   } else {
                     echo '<div style="text-transform: uppercase;" class="center alert alert-danger">file was not uploaded</div>';
                   }
