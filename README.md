@@ -118,9 +118,15 @@ if (isset($submit)) {
 
 ## PHP File Upload
 
+HTML CODE
+```
+<input type="file" name="file">
+```
+
+The input file tag is used to upload files to the server. The PHP method used to grab the input fields content is called `$_FILES['']`. When you use the file input field and submit the form, you will get array back with the following data.
+
+
 #### Useful functions to use dealing with forms
-
-
 `empty()` This function is useful to determine if a fields is empty.
 
 `explode()` Splits a string by defined symbol and returns array
