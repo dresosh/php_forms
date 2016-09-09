@@ -11,8 +11,10 @@ $submit = $_POST['submit'];
 // Work out file extension
 $file_ext = explode('.', $file_name);
 $file_ext = strtolower(end($file_ext));
+$test     = explode('-', $file_name);
 
 $allowed =  array( 'pdf', 'jpg', 'html');
+$location = 'uploads/';
 
 ?>
 
@@ -20,10 +22,21 @@ $allowed =  array( 'pdf', 'jpg', 'html');
 <section class="data">
   <div class="container">
     <div class="row">
+      <div class="col-sm-12">
+        <?php
+        if (isset($file)) {
+          // print_r($file_tmp);
+          echo $file_tmp;
+          // if (move_uploaded_file($file_tmp, $location.$name)) {
+          //   echo "uploaded";
+          // } else {
+          //   echo "upload failed";
+          // }
+        }
+        ?>
+      </div>
       <div class="col-sm-6">
         <h3>
-          <?php
-          ?>
         </h3>
       </div>
     </div>
@@ -44,27 +57,6 @@ $allowed =  array( 'pdf', 'jpg', 'html');
           </div>
         </form>
 
-        <?php
-          if (isset($file)) {
-            if (in_array($file_ext, $allowed)) {
-              if ($file_error === 0) {
-                if ($file_size <= 20000000) {
-                  $file_name_new = uniqid('', true) . '.' . $file_ext;
-                  $file_destination = 'uploads/' . $file_name_new;
-
-                  if (move_uploaded_file($file_tmp, $file_destination)) {
-                    // echo $file_destination;
-                    echo '<div style="text-transform: uppercase;" class="center alert alert-success">file was successfully uploaded <br> click to see <a href="http://tester.looking.la/'.$file_destination.'">File Destination</a></div>';
-                  } else {
-                    echo '<div style="text-transform: uppercase;" class="center alert alert-danger">file was not uploaded</div>';
-                  }
-                }
-              }
-            } else {
-              echo '<div style="text-transform: uppercase;" class="center alert alert-danger">You can only upload pdf, html and jpg files</div>';
-            }
-          }
-        ?>
       </div>
       <div class="col-sm-6">
         <h2>File Summary</h2>
