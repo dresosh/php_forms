@@ -16,22 +16,29 @@ $test     = explode('-', $file_name);
 $allowed =  array( 'pdf', 'jpg', 'html');
 $location = 'uploads/';
 
-?>
+$new_file = uniqid('', true);
+$new_file = explode('.', $new_file);
+$new_file = end($new_file);
+$new_file = $new_file . '.' . $file_name;
+$website  = 'http://tester.looking.la/';
+$url      = $website.$location.$new_file;
 
+
+?>
 
 <section class="data">
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
         <?php
-        if (isset($file)) {
-          // print_r($file_tmp);
-          echo $file_tmp;
-          // if (move_uploaded_file($file_tmp, $location.$name)) {
-          //   echo "uploaded";
-          // } else {
-          //   echo "upload failed";
-          // }
+        if (isset($submit)) {
+          if (move_uploaded_file($file_tmp ,$location.$new_file)) {
+            // echo '$url';
+            echo '<a href="'.$url.'">'.$url.'</a>';
+            // echo "File uploaded";
+          } else {
+            echo "Error";
+          }
         }
         ?>
       </div>
