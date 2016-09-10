@@ -10,7 +10,7 @@
   $file_name_new = explode('.',uniqid('', true))[0].'.'.$file_name;
   $location      = 'uploads/';
   $restrictions  = ['jpg', 'png', 'pdf', 'php', 'html'];
-  $url           = 'http://tester.looking.la/'.$location.$file_name;
+  $url           = $location.$file_name;
 
 ?>
 
@@ -29,17 +29,17 @@
         <?php
         if (isset($submit)) {
           if (in_array($file_ext, $restrictions)) {
-            if ($file_size < 3) {
+            if ($file_size < 4) {
               if (move_uploaded_file($file_tmp, $location.$file_name)) {
                 echo '<div class="alert alert-success">File was successfully uploaded</div>';
               } else {
                 echo '<div class="alert alert-danger">There was an error</div>';
               }
             } else {
-              echo '<div class="alert alert-danger">File size cannot exceed 8mb</div>';
+              echo '<div class="alert alert-danger">File size cannot exceed 4 mb</div>';
             }
           } else {
-            echo '<div class="alert alert-danger">You can only upload jpg, png, pdf, php and html files</div>';
+            echo '<div class="alert alert-danger">You can only upload jpg, png, pdf, php, and html files</div>';
           }
         }
         ?>
@@ -51,6 +51,7 @@
       <br><h4>File type: </h4><p><?php echo $file_ext; ?></p>
       <br><h4>File size: </h4><p><?php echo $file_size; ?> MB</p>
       <!-- <br><h4>New Filename: </h4><p><?php if (in_array($file_ext, $restrictions)) { if ($file_size < 3) { echo $file_name_new; } } ?></p> -->
+      <br><a href="http://tester.looking.la/uploads"><button type="button" class="btn btn-default">Website</button></a>
       <br><br><a href=<?php echo $url; ?>><?php if (in_array($file_ext, $restrictions)) { if ($file_size < 3) { echo '<button type="upload" name="upload" class="btn btn-success">Upload Link</button>'; } } ?></a>
     </div>
   </div>
