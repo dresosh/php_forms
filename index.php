@@ -39,7 +39,7 @@
   </head>
   <body>
 
-    <?php include('form.php') ?>
+    <?php include('views/form.php') ?>
 
   </body>
 </html>
