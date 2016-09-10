@@ -24,7 +24,7 @@
           <input type="file" class="form-control" name="file">
         </div>
         <div class="form-group">
-          <button type="submit" name="submit" class="btn btn-default">Send</button>
+          <button type="submit" name="submit" class="btn btn-default">Upload</button>
         </div>
         <?php
         if (isset($submit)) {
