@@ -12,8 +12,11 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <style media="screen">
-      h4 {
+      h4, p {
         display: inline-block;
+      }
+      h4 {
+        width: 140px;
       }
       .red {
         color: red;
@@ -22,6 +25,10 @@
         color: green;
       }
       .center {
+        text-align: center;
+      }
+      .alert {
+        text-transform: uppercase;
         text-align: center;
       }
     </style>

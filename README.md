@@ -146,9 +146,13 @@ Within that array is a tmp_name which is essentially a temp location where the f
 
 `explode()` Splits a string by defined symbol and returns array
 
-`in_array()` Searches for items in the array
+`in_array( mixed $needle , array $haystack [, bool $strict = FALSE ])` Searches for items in the array
 
-`uniqid()` Gets a prefixed unique identifier based on the current time in microseconds
+`uniqid('', ture)` Gets a prefixed unique identifier based on the current time in microseconds
+
+`strtolower()` Will change a string to lower case
+
+`strlen()` Will return string length
 
 #### Helpful video tutorials
 ```
