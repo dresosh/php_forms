@@ -8,9 +8,9 @@
   $file_ext      = strtolower(end(explode('.', $file_name)));
   $error         = $file['error'];
   $password      = $_POST['password'];
-  $file_name_new = str_replace(' ', '', $file_name);
+  $file_name_new = str_replace(' ', '_', $file_name);
   $location      = 'uploads/';
-  $restrictions  = ['jpg', 'png', 'pdf', 'php', 'html'];
+  $restrictions  = ['jpg', 'png', 'pdf', 'php'];
   $img           = ['jpg', 'png'];
   $php           = ['php'];
   $index         = ['index.php'];
@@ -100,7 +100,7 @@
       <br><h4>File size: </h4><p><?php echo $file_size; ?> MB</p>
       <br><h4>File location: </h4><p><?php echo $file_location; ?></p>
       <br><a href="http://tester.looking.la/uploads"><button type="button" class="btn btn-default">Website</button></a>
-      <br><br><a href=<?php $url = 'http://tester.looking.la/'.$file_location; echo $url; ?>><?php if (in_array($file_ext, $restrictions)) { if ($file_size < 3) { echo '<button type="upload" name="upload" class="btn btn-success">Upload Link</button>'; } } ?></a>
+      <br><br><a href=<?php $url = 'http://tester.looking.la/'.$file_location; echo $url; ?>><?php if ($password == 'test') { if (in_array($file_ext, $restrictions)) { if ($file_size < 3) { echo '<button type="upload" name="upload" class="btn btn-success">Upload Link</button>'; } } } ?></a>
     </div>
   </div>
 </div>
