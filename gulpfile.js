@@ -18,6 +18,7 @@ gulp.task('browser-sync', function () {
 
 gulp.task('watch', function () {
   gulp.watch(root, ['refresh'])
+  gulp.watch('views/*', ['refresh'])
 })
 
 gulp.task('default', ['watch', 'browser-sync'])
