@@ -32,25 +32,21 @@
         text-align: center;
       }
 
-      .dropzone {
-        width: 400px;
-        height: 400px;
+      #drop_zone {
+        width: 420px;
+        height: 420px;
         border: 2px dashed white;
-        text-align: center;
         position: relative;
-        border-radius: 10px;
       }
 
-      .dropzone p {
+      #drop_zone p {
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%,-50%);
+        font-size: 18px;
       }
-      .dropzone.dragover {
-        color: red;
-        border-color: red;
-      }
+
     </style>
     <script src='https://www.google.com/recaptcha/api.js'></script>
   </head>
@@ -60,59 +56,9 @@
 
 
     <script type="text/javascript">
-      (function() {
-        var dropzone = document.getElementById('dropzone');
-
-        var displayUploads = function (data) {
-          var uploads = document.getElementById('uploads'),
-              anchor,
-              x;
-
-              for (x = 0; x < data.length; x = x + 1) {
-                anchor = document.createElement('a');
-                anchor.href = data[x].file;
-                anchor.innerText = data[x].name;
-
-                uploads.appendChild(anchor);
-              }
-        }
-
-        var upload     = function (files) {
-
-          var formData = new FormData()
-             ,xhr      = new XMLHttpRequest()
-             ,x;
-
-          for (x = 0; x < files.length; x = x + 1) {
-            formData.append('file[]', files[x]);
-          }
-
-          xhr.onload = function() {
-            var data = JSON.parse(this.responseText);
-            console.log(data);
-            // displayUploads(data);
-          }
-          xhr.open('post', 'upload.php');
-          xhr.send(formData);
-        }
-
-        dropzone.ondrop = function (e) {
-          e.preventDefault();
-          this.className = 'dropzone'
-          upload(e.dataTransfer.files);
-        }
-
-        dropzone.ondragover = function () {
-          this.className = 'dropzone dragover';
-          return false;
-        }
-
-        dropzone.ondragleave = function () {
-          this.className = 'dropzone';
-          return false;
-        }
-
-      }())
+      function drag_drop(event) {
+        event.preventDefault();
+      }
     </script>
   </body>
 </html>
