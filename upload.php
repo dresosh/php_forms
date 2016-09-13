@@ -1,37 +1,19 @@
 <?php
-// Message
-$msg = 'This is a test email';
+  header('Content-Type: application/json');
 
-// Wordwrap
-$msg = wordwrap($msg, 70);
+  $uploaded = array();
 
-// Sender
-$from = "From: " .'wutang@wutang.com';
-
-// Sending Email
-mail("andre@looking.la", "Test Subject", $msg, $from);
-?>
-
-<?php
-   $name = $_FILES['file']['name'];
-  //  $size = $_FILES['file']['size'];
-  //  $type = $_FILES['file']['type'];
-
-   $tmp_name = $_FILES['file']['tmp_name'];
-
-  //  $error = $_FILES['file']['error'];
-
-  if (isset($name)) {
-    if ( !empty($name)) {
-
-      $location = 'uploads/';
-
-      if (move_uploaded_file($tmp_name, $location.$name)) {
-        echo 'Uploaded';
+  if (!empty($_FILES['file']['name'][0])) {
+    foreach ($_FILES['file']['name'] as $position => $name) {
+      if (move_uploaded_file($_FILES['file']['tmp_name'][$position], 'uploads/' . $name)) {
+        $uploaded[] = array(
+          'name' => $name,
+          'file' => 'uploads/' . $name
+        );
+      } else {
+        echo "there was an error";
       }
-
-    } else {
-      echo 'Please Choose a file';
     }
   }
+// echo json_encode($uploaded);
 ?>
