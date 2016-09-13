@@ -32,21 +32,6 @@
         text-align: center;
       }
 
-      #drop_zone {
-        width: 420px;
-        height: 420px;
-        border: 2px dashed white;
-        position: relative;
-      }
-
-      #drop_zone p {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%,-50%);
-        font-size: 18px;
-      }
-
     </style>
     <script src='https://www.google.com/recaptcha/api.js'></script>
   </head>
@@ -54,11 +39,5 @@
 
     <?php include('views/form.php') ?>
 
-
-    <script type="text/javascript">
-      function drag_drop(event) {
-        event.preventDefault();
-      }
-    </script>
   </body>
 </html>
