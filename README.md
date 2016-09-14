@@ -157,4 +157,5 @@ Within that array is a tmp_name which is essentially a temp location where the f
 #### Helpful video tutorials
 ```
 PHP File upload https://www.youtube.com/watch?v=PRCobMXhnyw
+File Upload Progress Bar https://www.youtube.com/watch?v=EraNFJiY0Eg
 ```
