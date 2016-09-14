@@ -1,37 +1,44 @@
 function _(el) {
-  return document.getElementById(el)
+  return document.getElementById(el);
 }
 
 function uploadFile() {
-  var file = _("file1").files[0];
-  console.log(file.name);
-  var formdata = new FormData();
-  formdata.append("file1", file);
-  var ajax = new XMLHttpRequest();
-  ajax.upload.addEventListener("progress", progressHandler, false);
-  ajax.addEventListener("load", completeHandler, false);
-  ajax.addEventListener("error", errorHandler, false);
-  ajax.addEventListener("abort", abortHandler, false);
-  ajax.open("POST", "upload.php");
-  ajax.send(formdata);
+  var file = _("file").files[0];
+
+  // Checking if file is loaded
+  if (file == undefined) {
+    _("status").innerHTML = '<div class="alert alert-danger">You need to load a file</div>';
+  } else {
+    console.log(file);
+    var formdata = new FormData()
+       ,ajax     = new XMLHttpRequest()
+
+    formdata.append("file", file)
+
+    // Ajax call
+    ajax.upload.addEventListener("progress", progressHandler, false);
+    ajax.addEventListener("load", completeHandler, false);
+    ajax.open("POST", "upload.php");
+    ajax.send(formdata);
+  }
+}
+
+function clear_status() {
+  _("progressBar").value = 0;
+  _("prog-message").innerHTML = 'Upload Status: ' + 0 + '%';
 }
 
 function progressHandler(event) {
-  _("loaded_n_total").innerHTML = "Uploaded " + event.loaded + " bytes of " + event.total;
-  var percent = (event.loaded / event.total) * 100;
+  var percent = (event.loaded / event.total) * 100
+     ,file    = _("file").files[0];
+
   _("progressBar").value = Math.round(percent);
-  _("status").innerHTML = Math.round(percent) + "% uploaded... please wait";
+  _("prog-message").innerHTML = 'Upload Status: ' + Math.round(percent) + '%';
+  _("name").innerHTML = file.name;
+  _("type").innerHTML = file.type.split("/")[1];
+  _("size").innerHTML = file.size / 1000000 ;
 }
 
 function completeHandler(event) {
   _("status").innerHTML = event.target.responseText;
-  _("progressBar").value = 0;
-}
-
-function errorHandler(event) {
-  _("status").innerHTML = 'Upload Failed';
-}
-
-function abortHandler(event) {
-  _("status").innerHTML = 'Upload Aborted';
 }
