@@ -1,0 +1,23 @@
+{
+  "name": "php_forms",
+  "version": "1.0.0",
+  "description": "## Basic contact Form #### HTML CODE",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dresosh/php_forms.git"
+  },
+  "author": "Andre Soschinski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dresosh/php_forms/issues"
+  },
+  "homepage": "https://github.com/dresosh/php_forms#readme",
+  "devDependencies": {
+    "browser-sync": "^2.18.12",
+    "gulp": "^3.9.1"
+  }
+}
